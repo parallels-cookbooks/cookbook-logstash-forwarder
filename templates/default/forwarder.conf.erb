@@ -1,0 +1,10 @@
+{
+
+  "network": {
+    "servers": <%= @servers.to_json %>,
+    "ssl ca": "<%= node['logstash-forwarder']['ssl_ca'] %>",
+    "timeout": <%= node['logstash-forwarder']['timeout'] %>
+  },
+
+  "files": <%= node['logstash-forwarder']['files'].to_json %>
+}
