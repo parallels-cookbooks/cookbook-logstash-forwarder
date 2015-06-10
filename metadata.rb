@@ -6,7 +6,7 @@ description      'Installs and configures logstash-forwarder'
 source_url       'https://github.com/parallels-cookbooks/cookbook-logstash-forwarder'
 issues_url       'https://github.com/parallels-cookbooks/cookbook-logstash-forwarder/issues'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+version          '0.1.1'
 
 supports 'amazon'
 supports 'redhat'
@@ -15,3 +15,6 @@ supports 'scientific'
 supports 'fedora'
 supports 'debian'
 supports 'ubuntu'
+
+depends 'apt'
+depends 'yum'

@@ -7,24 +7,22 @@
 #
 #
 
-remote_file package_path do
-  owner 'root'
-  group 'root'
-  mode '0644'
-  source package_url
-end
-
 if platform_family?('ubuntu', 'debian')
-  dpkg_package node['logstash-forwarder']['package_name'] do
-    source package_path
-    action :install
+  apt_repository 'logstashforwarder' do
+    uri node['logstash-forwarder']['repo']['url']
+    distribution 'stable'
+    components ['main']
+    key node['logstash-forwarder']['repo']['signkey']
   end
 else
-  package node['logstash-forwarder']['package_name'] do
-    source package_path
-    action :install
+  yum_repository 'logstashforwarder' do
+    description 'Lostash Forwarder official repo'
+    baseurl node['logstash-forwarder']['repo']['url']
+    gpgkey node['logstash-forwarder']['repo']['signkey']
   end
 end
+
+package 'logstash-forwarder'
 
 ruby_block 'get log_forward resources' do
   block do
