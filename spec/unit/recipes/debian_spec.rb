@@ -28,10 +28,6 @@ describe 'lwrp_test' do
           chef_run
         end
 
-        it 'creates remote_file' do
-          expect(chef_run).to create_remote_file('/tmp/logstash-forwarder_0.4.0_amd64.deb')
-        end
-
         it 'creates template' do
           expect(chef_run).to create_template('/etc/logstash-forwarder.conf')
           expect(chef_run).to render_file('/etc/logstash-forwarder.conf').with_content('["10.10.1.1:5043"]')
@@ -40,8 +36,12 @@ describe 'lwrp_test' do
           expect(chef_run).to render_file('/etc/logstash-forwarder.conf').with_content('"files": []')
         end
 
+        it do
+          expect(chef_run).to add_apt_repository('logstashforwarder')
+        end
+
         it 'installs package' do
-          expect(chef_run).to install_dpkg_package('logstash-forwarder')
+          expect(chef_run).to install_package('logstash-forwarder')
         end
 
         it 'enable and start service' do
