@@ -28,7 +28,7 @@ end
 
 ruby_block 'get log_forward resources' do
   block do
-    files = run_context.resource_collection.select { |r| r.is_a?(Chef::Resource::LogForward) }.map { |r| { paths: r.paths, fields: r.fields } }
+    files = run_context.resource_collection.select { |r| r.is_a?(Chef::Resource::LogstashForwarder) }.map { |r| { paths: r.paths, fields: r.fields } }
     node.set['logstash-forwarder']['files'] = files
   end
 end
