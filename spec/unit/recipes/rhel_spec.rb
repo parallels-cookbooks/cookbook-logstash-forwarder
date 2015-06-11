@@ -29,16 +29,16 @@ describe 'lwrp_test' do
           chef_run
         end
 
-        it 'creates remote_file' do
-          expect(chef_run).to create_remote_file('/tmp/logstash-forwarder-0.4.0-1.x86_64.rpm')
-        end
-
         it 'creates template' do
           expect(chef_run).to create_template('/etc/logstash-forwarder.conf')
           expect(chef_run).to render_file('/etc/logstash-forwarder.conf').with_content('["10.10.1.1:5043"]')
           expect(chef_run).to render_file('/etc/logstash-forwarder.conf').with_content('"timeout": 15')
           expect(chef_run).to render_file('/etc/logstash-forwarder.conf').with_content('"ssl ca": "/etc/pki/tls/certs/ca-bundle.crt"')
           expect(chef_run).to render_file('/etc/logstash-forwarder.conf').with_content('"files": []')
+        end
+
+        it do
+          expect(chef_run).to create_yum_repository('logstashforwarder')
         end
 
         it 'installs package' do

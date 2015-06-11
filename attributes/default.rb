@@ -17,11 +17,13 @@ default['logstash-forwarder']['version'] = '0.4.0'
 # attribute for temporary storing part of config file
 default['logstash-forwarder']['files'] = []
 
+default['logstash-forwarder']['repo']['signkey'] = 'http://packages.elasticsearch.org/GPG-KEY-elasticsearch'
+
 case node['platform_family']
 when 'rhel', 'fedora'
   default['logstash-forwarder']['ssl_ca'] = '/etc/pki/tls/certs/ca-bundle.crt'
-  default['logstash-forwarder']['package_url'] = 'https://download.elasticsearch.org/logstash-forwarder/binaries/logstash-forwarder-%{version}-1.x86_64.rpm'
+  default['logstash-forwarder']['repo']['url'] = 'http://packages.elasticsearch.org/logstashforwarder/centos/'
 when 'debian', 'ubuntu'
   default['logstash-forwarder']['ssl_ca'] = '/etc/ssl/certs/ca-certificates.crt'
-  default['logstash-forwarder']['package_url'] = 'https://download.elasticsearch.org/logstash-forwarder/binaries/logstash-forwarder_%{version}_amd64.deb'
+  default['logstash-forwarder']['repo']['url'] = 'http://packages.elasticsearch.org/logstashforwarder/debian/'
 end
