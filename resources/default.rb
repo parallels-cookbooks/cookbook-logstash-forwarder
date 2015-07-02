@@ -6,8 +6,9 @@
 # Copyright (c) 2015, Parallels IP Holdings GmbH
 #
 
-provides :log_forward
 resource_name :log_forward
+provides :log_forward
+
 actions :create
 default_action :create
 

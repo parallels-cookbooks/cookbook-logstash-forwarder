@@ -6,6 +6,8 @@
 # Copyright (c) 2015, Parallels IP Holdings GmbH
 #
 
+provides :log_forward
+
 use_inline_resources if defined?(use_inline_resources)
 
 action :create do
