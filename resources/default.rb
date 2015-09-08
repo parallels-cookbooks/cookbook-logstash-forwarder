@@ -6,7 +6,6 @@
 # Copyright (c) 2015, Parallels IP Holdings GmbH
 #
 
-resource_name :log_forward
 provides :log_forward
 
 actions :create
