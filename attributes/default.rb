@@ -13,6 +13,9 @@ default['logstash-forwarder']['logstash_servers'] = ['localhost:5043']
 default['logstash-forwarder']['timeout'] = 15
 default['logstash-forwarder']['config_path'] = '/etc/logstash-forwarder.conf'
 default['logstash-forwarder']['version'] = '0.4.0'
+default['logstash-forwarder']['enable_ssl'] = false
+default['logstash-forwarder']['ssl_cert'] = ''
+default['logstash-forwarder']['ssl_key'] = ''
 
 # attribute for temporary storing part of config file
 default['logstash-forwarder']['files'] = []
