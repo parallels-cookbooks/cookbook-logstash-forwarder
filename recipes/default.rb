@@ -26,7 +26,12 @@ package 'logstash-forwarder'
 
 ruby_block 'get log_forward resources' do
   block do
-    files = run_context.resource_collection.select { |r| r.is_a?(Chef::Resource::LogstashForwarder) }.map { |r| { paths: r.paths, fields: r.fields } }
+    klass = if defined?(Chef::ResourceResolver)
+      r = Chef::ResourceResolver
+      r.respond_to?(:resolve) && r.resolve(:logstash_forwarder)
+    end
+    klass ||= Chef::Resource::LogstashForwarder
+    files = run_context.resource_collection.select { |r| r.is_a?(klass) }.map { |r| { paths: r.paths, fields: r.fields } }
     node.set['logstash-forwarder']['files'] = files
   end
 end

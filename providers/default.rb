@@ -6,7 +6,7 @@
 # Copyright (c) 2015, Parallels IP Holdings GmbH
 #
 
-provides :log_forward if ::Chef::Version.new(::Chef::VERSION).major >= 12
+provides :log_forward if defined?(provides)
 
 use_inline_resources if defined?(use_inline_resources)
 
